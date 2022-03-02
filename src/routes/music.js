@@ -34,7 +34,7 @@ async function getOneMusic(req,res){
 async function createMusic(req,res){
     let newmusic= req.body;
     let music = await Music.create(newmusic);
-    res.status(201).json(music);
+    res.status(200).json(music);
 }
 
 // localhost:3000/1

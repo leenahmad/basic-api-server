@@ -25,7 +25,9 @@ async function getFood(req,res){
 // to find food by id 
 async function getOneFood(req,res){
     let foodid = parseInt(req.params.id);
+    console.log(foodid)
     let food = await Food.findOne({where:{id:foodid}});
+    console.log('inside function',food);
     res.json(food);
 }
 
@@ -34,7 +36,7 @@ async function getOneFood(req,res){
 async function createFood(req,res){
     let newFood = req.body;
     let food = await Food.create(newFood);
-    res.status(201).json(food);
+    res.status(200).json(food);
 }
 
 // localhost:3000/1

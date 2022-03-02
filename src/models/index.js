@@ -5,16 +5,19 @@ const food = require('./food.js');
 const music = require('./music.js');
 
 // prepare the connection
-const POSTGRES_URL = process.env.DATABASE_URL;
+const POSTGRES_URL =process.env.NODE_ENV === 'test' ? 'sqlite:memory:' : process.env.DATABASE_URL;
 
-let sequelizeOptions =  {
+
+
+let sequelizeOptions =  process.env.NODE_ENV === 'production' ?{
     dialectOptions: {
       ssl: {
         require: true,
         rejectUnauthorized: false,
       }
     }
-  }
+  } : {};
+
 
 let sequelize = new Sequelize(POSTGRES_URL,sequelizeOptions);
 
